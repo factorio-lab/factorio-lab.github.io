@@ -16,8 +16,6 @@ import cytoscape from 'cytoscape';
 import elk from 'cytoscape-elk';
 import { drag, select, Selection, zoom } from 'd3';
 import { saveAs } from 'file-saver';
-import { ButtonModule } from 'primeng/button';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { combineLatest, debounceTime, delay, Subject } from 'rxjs';
 
 import { FlowSettingsComponent } from '~/components/flow-settings/flow-settings.component';
@@ -58,14 +56,7 @@ cytoscape.use(elk as cytoscape.Ext);
 @Component({
   selector: 'lab-flow',
   standalone: true,
-  imports: [
-    AsyncPipe,
-    ButtonModule,
-    ProgressSpinnerModule,
-    FlowSettingsComponent,
-    StepsComponent,
-    TranslatePipe,
-  ],
+  imports: [AsyncPipe, FlowSettingsComponent, StepsComponent, TranslatePipe],
   templateUrl: './flow.component.html',
   styleUrls: ['./flow.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

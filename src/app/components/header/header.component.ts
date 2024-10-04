@@ -9,15 +9,12 @@ import {
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-import { MenuItem } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
-import { SplitButtonModule } from 'primeng/splitbutton';
-import { TooltipModule } from 'primeng/tooltip';
 import { combineLatest, map } from 'rxjs';
 
 import { APP } from '~/models/constants';
 import { Game, gameOptions } from '~/models/enum/game';
 import { gameInfo } from '~/models/game-info';
+import { MenuItem } from '~/models/menu-item';
 import { isRecipeObjective } from '~/models/objective';
 import { IconSmClassPipe } from '~/pipes/icon-class.pipe';
 import { TranslatePipe } from '~/pipes/translate.pipe';
@@ -36,14 +33,7 @@ interface MenuLink {
 @Component({
   selector: 'lab-header',
   standalone: true,
-  imports: [
-    RouterLink,
-    ButtonModule,
-    SplitButtonModule,
-    TooltipModule,
-    IconSmClassPipe,
-    TranslatePipe,
-  ],
+  imports: [RouterLink, IconSmClassPipe, TranslatePipe],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

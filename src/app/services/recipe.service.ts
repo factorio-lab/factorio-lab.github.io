@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { SelectItem } from 'primeng/api';
 
 import {
   areArraysEqual,
@@ -26,6 +25,7 @@ import {
   ObjectiveSettings,
   ObjectiveState,
 } from '~/models/objective';
+import { Option } from '~/models/option';
 import { Rational, rational } from '~/models/rational';
 import {
   areBeaconSettingsEqual,
@@ -61,10 +61,7 @@ export class RecipeService {
     return options[0];
   }
 
-  fuelOptions(
-    entity: MachineJson | Machine,
-    data: Dataset,
-  ): SelectItem<string>[] {
+  fuelOptions(entity: MachineJson | Machine, data: Dataset): Option[] {
     if (entity.fuel) {
       const fuel = data.itemEntities[entity.fuel];
       return [{ value: fuel.id, label: fuel.name }];
@@ -77,16 +74,14 @@ export class RecipeService {
       .map((f) => data.itemEntities[f])
       .filter(fnPropsNotNullish('fuel'))
       .filter((f) => fuelCategories.includes(f.fuel.category));
-    return allowed.map(
-      (f): SelectItem<string> => ({ value: f.id, label: f.name }),
-    );
+    return allowed.map((f): Option => ({ value: f.id, label: f.name }));
   }
 
   moduleOptions(
     entity: Machine | Beacon,
     data: Dataset,
     recipeId?: string,
-  ): SelectItem<string>[] {
+  ): Option[] {
     // Get all modules
     let allowed = data.moduleIds
       .map((i) => data.itemEntities[i])
@@ -116,7 +111,7 @@ export class RecipeService {
     }
 
     const options = allowed.map(
-      (m): SelectItem<string> => ({ value: m.id, label: m.name }),
+      (m): Option => ({ value: m.id, label: m.name }),
     );
     if (
       (data.game !== Game.Satisfactory || !recipe?.isMining) &&
@@ -129,7 +124,7 @@ export class RecipeService {
 
   /** Determines default modules for a recipe/machine */
   defaultModules(
-    options: SelectItem<string>[],
+    options: Option[],
     moduleRankIds: string[],
     count: Rational | true | undefined,
     machineValue?: ModuleSettings[],
@@ -767,7 +762,7 @@ export class RecipeService {
 
   dehydrateModules(
     value: ModuleSettings[],
-    options: SelectItem<string>[],
+    options: Option[],
     moduleRankIds: string[],
     count: Rational | true | undefined,
     machineValue?: ModuleSettings[] | undefined,
@@ -800,7 +795,7 @@ export class RecipeService {
 
   hydrateModules(
     value: ModuleSettings[] | undefined,
-    options: SelectItem<string>[],
+    options: Option[],
     moduleRankIds: string[],
     count: Rational | true | undefined,
     machineValue?: ModuleSettings[] | undefined,

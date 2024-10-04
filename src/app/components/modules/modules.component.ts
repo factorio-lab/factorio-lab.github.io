@@ -7,11 +7,7 @@ import {
   output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { DropdownChangeEvent, DropdownModule } from 'primeng/dropdown';
-import { TooltipModule } from 'primeng/tooltip';
 
-import { DropdownBaseDirective } from '~/directives/dropdown-base.directive';
 import { coalesce, notNullish, spread } from '~/helpers';
 import { Beacon } from '~/models/data/beacon';
 import { Machine } from '~/models/data/machine';
@@ -31,10 +27,6 @@ import { TooltipComponent } from '../tooltip/tooltip.component';
   standalone: true,
   imports: [
     FormsModule,
-    ButtonModule,
-    DropdownModule,
-    TooltipModule,
-    DropdownBaseDirective,
     FilterOptionsPipe,
     IconSmClassPipe,
     InputNumberComponent,
@@ -95,14 +87,14 @@ export class ModulesComponent {
     this.setValue.emit(modules);
   }
 
-  setId(i: number, event: DropdownChangeEvent): void {
-    event.originalEvent.stopPropagation();
-    const id = event.value as string;
-    const modules = this.modules().map((m, j) =>
-      i === j ? spread(m, { id }) : m,
-    );
-    this.setValue.emit(modules);
-  }
+  // setId(i: number, event: DropdownChangeEvent): void {
+  //   event.originalEvent.stopPropagation();
+  //   const id = event.value as string;
+  //   const modules = this.modules().map((m, j) =>
+  //     i === j ? spread(m, { id }) : m,
+  //   );
+  //   this.setValue.emit(modules);
+  // }
 
   removeEntry(i: number): void {
     const modules = this.modules().filter((_, j) => i !== j);

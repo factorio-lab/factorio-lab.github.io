@@ -12,8 +12,6 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
 import { debounce, map, of, Subject, tap, timer } from 'rxjs';
 
 import { ValidateNumberDirective } from '~/directives/validate-number.directive';
@@ -30,12 +28,7 @@ interface Event {
 @Component({
   selector: 'lab-input-number',
   standalone: true,
-  imports: [
-    FormsModule,
-    ButtonModule,
-    InputTextModule,
-    ValidateNumberDirective,
-  ],
+  imports: [FormsModule, ValidateNumberDirective],
   templateUrl: './input-number.component.html',
   styleUrls: ['./input-number.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

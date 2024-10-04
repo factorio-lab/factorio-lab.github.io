@@ -6,10 +6,6 @@ import {
   inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MenuItem } from 'primeng/api';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
-import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
 
 import { CollectionTableComponent } from '~/components/collection-table/collection-table.component';
 import { coalesce, updateSetIds } from '~/helpers';
@@ -17,6 +13,7 @@ import { Category } from '~/models/data/category';
 import { Item } from '~/models/data/item';
 import { Game } from '~/models/enum/game';
 import { ItemId } from '~/models/enum/item-id';
+import { MenuItem } from '~/models/menu-item';
 import { ItemState } from '~/models/settings/item-settings';
 import { MachineState } from '~/models/settings/machine-settings';
 import { BonusPercentPipe } from '~/pipes/bonus-percent.pipe';
@@ -35,9 +32,6 @@ import { DetailComponent } from '../../models/detail.component';
   imports: [
     FormsModule,
     KeyValuePipe,
-    BreadcrumbModule,
-    ButtonModule,
-    CheckboxModule,
     BonusPercentPipe,
     CollectionTableComponent,
     IconClassPipe,

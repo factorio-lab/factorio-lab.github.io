@@ -1,5 +1,4 @@
-import { SelectItem } from 'primeng/api';
-
+import { Option } from '../option';
 import { Game } from './game';
 
 export enum LinkValue {
@@ -11,8 +10,8 @@ export enum LinkValue {
   Machines = 5,
 }
 
-export function linkValueOptions(game: Game): SelectItem<LinkValue>[] {
-  const result: SelectItem<LinkValue>[] = [
+export function linkValueOptions(game: Game): Option<LinkValue>[] {
+  const result: Option<LinkValue>[] = [
     { label: 'options.linkValue.none', value: LinkValue.None },
     { label: 'options.linkValue.percent', value: LinkValue.Percent },
     { label: 'options.linkValue.items', value: LinkValue.Items },

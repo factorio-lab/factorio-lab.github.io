@@ -1,10 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DialogModule } from 'primeng/dialog';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { TableModule } from 'primeng/table';
 
 import { spread } from '~/helpers';
 import {
@@ -28,16 +23,7 @@ import { DialogComponent } from '../modal';
 @Component({
   selector: 'lab-columns',
   standalone: true,
-  imports: [
-    FormsModule,
-    ButtonModule,
-    CheckboxModule,
-    DialogModule,
-    InputNumberModule,
-    TableModule,
-    PrecisionExamplePipe,
-    TranslatePipe,
-  ],
+  imports: [FormsModule, PrecisionExamplePipe, TranslatePipe],
   templateUrl: './columns.component.html',
   styleUrls: ['./columns.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

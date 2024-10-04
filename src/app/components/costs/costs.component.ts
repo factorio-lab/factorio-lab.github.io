@@ -1,9 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DialogModule } from 'primeng/dialog';
-import { TooltipModule } from 'primeng/tooltip';
 
 import { spread } from '~/helpers';
 import { rational } from '~/models/rational';
@@ -21,15 +17,7 @@ import { DialogComponent } from '../modal';
 @Component({
   selector: 'lab-costs',
   standalone: true,
-  imports: [
-    FormsModule,
-    ButtonModule,
-    CheckboxModule,
-    DialogModule,
-    TooltipModule,
-    InputNumberComponent,
-    TranslatePipe,
-  ],
+  imports: [FormsModule, InputNumberComponent, TranslatePipe],
   templateUrl: './costs.component.html',
   styleUrls: ['./costs.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

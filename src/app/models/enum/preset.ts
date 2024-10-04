@@ -1,5 +1,4 @@
-import { SelectItem } from 'primeng/api';
-
+import { Option } from '../option';
 import { Game } from './game';
 
 export enum Preset {
@@ -9,7 +8,7 @@ export enum Preset {
   Beacon12 = 3,
 }
 
-export function presetOptions(game: Game): SelectItem<Preset>[] {
+export function presetOptions(game: Game): Option<Preset>[] {
   return game === Game.Factorio
     ? [
         { value: Preset.Minimum, label: 'options.preset.minimum' },

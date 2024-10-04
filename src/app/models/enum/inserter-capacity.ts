@@ -1,4 +1,4 @@
-import { SelectItem } from 'primeng/api';
+import { Option } from '../option';
 
 export enum InserterCapacity {
   Capacity0 = 0,
@@ -6,7 +6,7 @@ export enum InserterCapacity {
   Capacity7 = 2,
 }
 
-export const inserterCapacityOptions: SelectItem<InserterCapacity>[] = [
+export const inserterCapacityOptions: Option<InserterCapacity>[] = [
   {
     label: 'options.inserterCapacity.capacity0',
     value: InserterCapacity.Capacity0,

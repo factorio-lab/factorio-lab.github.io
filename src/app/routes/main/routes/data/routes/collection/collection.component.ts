@@ -7,13 +7,12 @@ import {
 } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { MenuItem } from 'primeng/api';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { map, switchMap } from 'rxjs';
 
 import { CollectionTableComponent } from '~/components/collection-table/collection-table.component';
 import { Dataset } from '~/models/dataset';
 import { IdType } from '~/models/enum/id-type';
+import { MenuItem } from '~/models/menu-item';
 import { TranslateService } from '~/services/translate.service';
 import { RecipesService } from '~/store/recipes.service';
 import { SettingsService } from '~/store/settings.service';
@@ -21,7 +20,7 @@ import { SettingsService } from '~/store/settings.service';
 @Component({
   selector: 'lab-collection',
   standalone: true,
-  imports: [BreadcrumbModule, CollectionTableComponent],
+  imports: [CollectionTableComponent],
   templateUrl: './collection.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

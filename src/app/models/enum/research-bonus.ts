@@ -1,5 +1,4 @@
-import { SelectItem } from 'primeng/api';
-
+import { Option } from '../option';
 import { Rational, rational } from '../rational';
 
 export const researchBonusValue = {
@@ -12,7 +11,7 @@ export const researchBonusValue = {
   speed6: rational(250n),
 };
 
-export const researchBonusOptions: SelectItem<Rational>[] = [
+export const researchBonusOptions: Option<Rational>[] = [
   { label: 'options.researchBonus.speed0', value: researchBonusValue.speed0 },
   { label: 'options.researchBonus.speed1', value: researchBonusValue.speed1 },
   { label: 'options.researchBonus.speed2', value: researchBonusValue.speed2 },

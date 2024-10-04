@@ -5,13 +5,8 @@ import { ReplaySubject } from 'rxjs';
 import { fnPropsNotNullish } from '~/helpers';
 import { IconJson } from '~/models/data/icon';
 import { Theme } from '~/models/enum/theme';
-import { getStoredValue } from '~/models/stored-signal';
 
-import {
-  initialPreferencesState,
-  PreferencesService,
-  PreferencesState,
-} from '../store/preferences.service';
+import { PreferencesService } from '../store/preferences.service';
 import { SettingsService } from '../store/settings.service';
 
 const LAB_ICON_STYLE_ID = 'lab-icon-css';
@@ -168,31 +163,5 @@ export class ThemeService {
 
   private escapeSelector(className: string): string {
     return className.replace(/([^A-Za-z0-9_-])/g, '\\$1');
-  }
-
-  /**
-   * Used to set up the initial theme without loading the full store.
-   * Helps to prevent flashing that can occur if UI loads light theme and swaps to dark at runtime.
-   * Unsafe to inject the full store in the app initializer because WASM may not be loaded yet.
-   */
-  static appInitTheme(): void {
-    let theme = initialPreferencesState.theme;
-    const stateStr = getStoredValue('preferences');
-    if (stateStr) {
-      try {
-        const state = JSON.parse(stateStr) as PreferencesState;
-        theme = state.theme;
-      } catch {
-        // Ignore error
-      }
-    }
-
-    if (theme === Theme.Light) {
-      // Need to switch to light theme before app starts
-      const themeLink = window.document.getElementById(
-        LAB_THEME_STYLE_ID,
-      ) as HTMLLinkElement | null;
-      if (themeLink) themeLink.href = 'theme-light.css';
-    }
   }
 }

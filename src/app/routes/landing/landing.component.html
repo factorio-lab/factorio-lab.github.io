@@ -1,5 +1,28 @@
 @if (mod() != null) {
-  <p-card>
+  <div class="flex flex-col rounded-lg border p-4 shadow">
+    <div class="flex justify-center">
+      <img src="factoriolab.webp" alt="FactorioLab" height="128" width="128" />
+    </div>
+    <div class="mt-2" [innerHTML]="'landing.welcome' | translate"></div>
+
+    <div class="my-2 flex flex-col">
+      <label for="game" class="px-1 text-sm">{{
+        'settings.game' | translate
+      }}</label>
+      <select
+        id="game"
+        #gameSelect
+        class="rounded-lg border p-2 dark:bg-zinc-900"
+        [ngModel]="data().game"
+        (change)="setGame($any(gameSelect.value))"
+      >
+        @for (game of gameOptions; track game.value) {
+          <option [value]="game.value">{{ game.label | translate }}</option>
+        }
+      </select>
+    </div>
+  </div>
+  <!-- <p-card>
     <div class="d-flex flex-column">
       <div class="d-flex justify-content-center">
         <img
@@ -102,7 +125,7 @@
         pButton
         pRipple
         type="button"
-        class="mt-2 p-button-help"
+        class="p-button-help mt-2"
         icon="fa-solid fa-question"
         [label]="'landing.help' | translate"
         routerLink="wizard"
@@ -112,7 +135,7 @@
         pButton
         pRipple
         type="button"
-        class="mt-2 mb-3 p-button-outlined"
+        class="p-button-outlined mb-3 mt-2"
         icon="fa-solid fa-forward"
         [label]="'landing.skip' | translate"
         routerLink="list"
@@ -125,11 +148,10 @@
         (onChange)="preferencesSvc.apply({ bypassLanding: $event.checked })"
       ></p-checkbox>
     </div>
-  </p-card>
+  </p-card> -->
 } @else {
-  <p-progressSpinner></p-progressSpinner>
+  <div class="spinner"></div>
+  <!-- <p-progressSpinner></p-progressSpinner> -->
 }
 
-<span class="position-absolute bottom-0 mb-3">{{
-  contentSvc.version$ | async
-}}</span>
+<span class="absolute bottom-0 mb-3">{{ contentSvc.version$ | async }}</span>

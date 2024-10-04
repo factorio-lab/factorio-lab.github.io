@@ -1,13 +1,6 @@
-import {
-  computed,
-  inject,
-  Injectable,
-  signal,
-  TemplateRef,
-} from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Confirmation, Message } from 'primeng/api';
-import { BehaviorSubject, fromEvent, map, Subject } from 'rxjs';
+import { fromEvent, map } from 'rxjs';
 
 import { versionStr } from '~/helpers';
 
@@ -35,21 +28,15 @@ export class ContentService {
 
   isMobile = computed(() => this.width() < BREAKPOINT_SMALL);
 
-  // Dialogs
-  showToast$ = new Subject<Message>();
-  showConfirm$ = new Subject<Confirmation>();
-
-  confirm(confirmation: Confirmation): void {
-    this.showConfirm$.next(confirmation);
+  toast(toast: unknown): void {
+    // TODO: Add toast support
+    console.log('toast', toast);
   }
 
-  // Templates
-  translateSelectedItem$ = new BehaviorSubject<
-    TemplateRef<unknown> | undefined
-  >(undefined);
-  translateItem$ = new BehaviorSubject<TemplateRef<unknown> | undefined>(
-    undefined,
-  );
+  confirm(confirmation: unknown): void {
+    // TODO: Add confirmation support
+    console.log('confirm', confirmation);
+  }
 
   // Header
   settingsActive = signal(false);

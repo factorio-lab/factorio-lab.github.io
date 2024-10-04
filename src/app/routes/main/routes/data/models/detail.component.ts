@@ -1,9 +1,9 @@
 import { Component, inject, input } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { MenuItem } from 'primeng/api';
 import { map, switchMap } from 'rxjs';
 
+import { MenuItem } from '~/models/menu-item';
 import { TranslateService } from '~/services/translate.service';
 import { RecipesService } from '~/store/recipes.service';
 import { SettingsService } from '~/store/settings.service';

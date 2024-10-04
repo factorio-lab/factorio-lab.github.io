@@ -10,24 +10,8 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AccordionModule } from 'primeng/accordion';
-import { MenuItem } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DialogModule } from 'primeng/dialog';
-import { DropdownModule } from 'primeng/dropdown';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { InputTextModule } from 'primeng/inputtext';
-import { MenuModule } from 'primeng/menu';
-import { MultiSelectModule } from 'primeng/multiselect';
-import { OrderListModule } from 'primeng/orderlist';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { TableModule } from 'primeng/table';
-import { TooltipModule } from 'primeng/tooltip';
 import { first } from 'rxjs';
 
-import { DropdownBaseDirective } from '~/directives/dropdown-base.directive';
-import { DropdownTranslateDirective } from '~/directives/dropdown-translate.directive';
 import { NoDragDirective } from '~/directives/no-drag.directive';
 import { coalesce } from '~/helpers';
 import { displayRateOptions } from '~/models/enum/display-rate';
@@ -41,6 +25,7 @@ import { powerUnitOptions } from '~/models/enum/power-unit';
 import { researchBonusOptions } from '~/models/enum/research-bonus';
 import { themeOptions } from '~/models/enum/theme';
 import { gameInfo } from '~/models/game-info';
+import { MenuItem } from '~/models/menu-item';
 import { modOptions } from '~/models/options';
 import { rational } from '~/models/rational';
 import { BeaconSettings } from '~/models/settings/beacon-settings';
@@ -73,23 +58,8 @@ import { TooltipComponent } from '../tooltip/tooltip.component';
     FormsModule,
     KeyValuePipe,
     NgClass,
-    AccordionModule,
-    ButtonModule,
-    CheckboxModule,
-    DialogModule,
-    DropdownModule,
-    InputNumberModule,
-    InputTextModule,
-    MenuModule,
-    MultiSelectModule,
-    OrderListModule,
-    ScrollPanelModule,
-    TableModule,
-    TooltipModule,
     BeaconsOverlayComponent,
     CostsComponent,
-    DropdownBaseDirective,
-    DropdownTranslateDirective,
     FilterOptionsPipe,
     IconSmClassPipe,
     InputNumberComponent,

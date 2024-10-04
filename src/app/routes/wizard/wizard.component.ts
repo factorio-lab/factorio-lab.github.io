@@ -1,16 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { DividerModule } from 'primeng/divider';
-import { DropdownModule } from 'primeng/dropdown';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { StepsModule } from 'primeng/steps';
 
 import { InputNumberComponent } from '~/components/input-number/input-number.component';
 import { PickerComponent } from '~/components/picker/picker.component';
-import { DropdownTranslateDirective } from '~/directives/dropdown-translate.directive';
 import { displayRateOptions } from '~/models/enum/display-rate';
 import { ObjectiveType } from '~/models/enum/objective-type';
 import { ObjectiveUnit } from '~/models/enum/objective-unit';
@@ -27,14 +20,7 @@ export type WizardState = 'type' | 'item' | 'recipe';
   standalone: true,
   imports: [
     FormsModule,
-    ButtonModule,
     RouterLink,
-    CardModule,
-    DividerModule,
-    DropdownModule,
-    RadioButtonModule,
-    StepsModule,
-    DropdownTranslateDirective,
     IconClassPipe,
     InputNumberComponent,
     PickerComponent,

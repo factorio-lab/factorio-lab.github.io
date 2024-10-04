@@ -1,4 +1,4 @@
-import { SelectItem } from 'primeng/api';
+import { Option } from '../option';
 
 export enum InserterTarget {
   Chest = 0,
@@ -7,7 +7,7 @@ export enum InserterTarget {
   TransportBelt = 3,
 }
 
-export const inserterTargetOptions: SelectItem<InserterTarget>[] = [
+export const inserterTargetOptions: Option<InserterTarget>[] = [
   { label: 'options.inserterTarget.chest', value: InserterTarget.Chest },
   {
     label: 'options.inserterTarget.expressTransportBelt',

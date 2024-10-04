@@ -1,8 +1,7 @@
-import { SelectItem } from 'primeng/api';
-
 import { spread } from '~/helpers';
 
 import { GameInfo } from '../game-info';
+import { Option } from '../option';
 
 export type ColumnKey =
   | 'checkbox'
@@ -62,11 +61,11 @@ export const initialColumnsState: ColumnsState = allColumns.reduce(
 ) as ColumnsState;
 
 /** Get column options for passed game */
-export function columnOptions(gameInfo: GameInfo): SelectItem<ColumnKey>[] {
+export function columnOptions(gameInfo: GameInfo): Option<ColumnKey>[] {
   return allColumns
     .filter((c) => !gameInfo.hideColumns.includes(c))
     .map(
-      (id): SelectItem<ColumnKey> => ({
+      (id): Option<ColumnKey> => ({
         label: `options.column.${id}`,
         value: id,
         disabled: id === 'items' || id === 'machines',

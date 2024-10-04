@@ -8,7 +8,7 @@
       "schematics": {
         "@schematics/angular:component": {
           "changeDetection": "OnPush",
-          "style": "scss"
+          "style": "none"
         }
       },
       "root": "",
@@ -38,35 +38,11 @@
                 "output": "/assets/glpk-wasm/"
               }
             ],
-            "styles": [
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "src/styles.scss",
-              {
-                "input": "src/styles/themes/dark/theme.css",
-                "bundleName": "theme-dark",
-                "inject": false
-              },
-              {
-                "input": "src/styles/themes/light/theme.css",
-                "bundleName": "theme-light",
-                "inject": false
-              },
-              {
-                "input": "src/styles/themes/black/theme.css",
-                "bundleName": "theme-black",
-                "inject": false
-              }
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": ["node_modules"]
-            },
+            "styles": ["src/styles.css"],
             "scripts": [],
             "allowedCommonJsDependencies": [
               "@sideway/formula",
               "cytoscape-elk",
-              "deep-freeze-strict",
               "file-saver",
               "glpk-ts"
             ],
@@ -174,17 +150,9 @@
                 "output": "/assets/glpk-wasm/"
               }
             ],
-            "styles": [
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.css"],
             "codeCoverage": true,
             "codeCoverageExclude": ["src/app/tests/**/*"],
-            "stylePreprocessorOptions": {
-              "includePaths": ["src/styles"]
-            },
             "scripts": []
           }
         },

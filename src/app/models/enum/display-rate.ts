@@ -1,5 +1,4 @@
-import { SelectItem } from 'primeng/api';
-
+import { Option } from '../option';
 import { Rational, rational } from '../rational';
 
 export enum DisplayRate {
@@ -8,7 +7,7 @@ export enum DisplayRate {
   PerHour = 2,
 }
 
-export const displayRateOptions: SelectItem<DisplayRate>[] = [
+export const displayRateOptions: Option<DisplayRate>[] = [
   { value: DisplayRate.PerSecond, label: 'options.displayRate.perSecond' },
   { value: DisplayRate.PerMinute, label: 'options.displayRate.perMinute' },
   { value: DisplayRate.PerHour, label: 'options.displayRate.perHour' },

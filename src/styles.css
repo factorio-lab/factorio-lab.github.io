@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    @apply dark:border-zinc-600;
+  }
+}
+
+@layer components {
+  .spinner {
+    @apply m-1 size-24 animate-spin rounded-full border-4 border-theme-500 border-x-transparent;
+  }
+}

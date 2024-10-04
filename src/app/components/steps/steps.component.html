@@ -1,4 +1,4 @@
-<p-table
+<!-- <p-table
   #stepsTable
   dataKey="id"
   [rowTrackBy]="trackSvc.trackStep"
@@ -16,7 +16,6 @@
 >
   <ng-template pTemplate="header">
     <tr>
-      <!-- Table actions row -->
       <td colspan="100">
         <div class="d-flex gap-2 py-2">
           <button
@@ -43,9 +42,7 @@
       </td>
     </tr>
     <tr class="column-header-row">
-      <!-- Row actions -->
       <th></th>
-      <!-- Checkbox -->
       @if (!focus() && columnsState().checkbox.show) {
         <th>
           <div class="d-flex align-items-center justify-content-center">
@@ -68,11 +65,9 @@
           </div>
         </th>
       }
-      <!-- Tree -->
       @if (!focus() && columnsState().tree.show) {
         <th>{{ 'options.column.tree' | translate }}</th>
       }
-      <!-- Items (Value / Icon)-->
       <th colspan="2" pSortableColumn="items">
         <div class="d-flex align-items-center">
           <span>{{ dispRateInfo().itemsLabel | translate }}</span>
@@ -92,7 +87,6 @@
           }
         </div>
       </th>
-      <!-- Belts -->
       @if (columnsState().belts.show) {
         <th colspan="2" pSortableColumn="belts">
           <div class="d-flex align-items-center">
@@ -114,7 +108,6 @@
           </div>
         </th>
       }
-      <!-- Wagons -->
       @if (columnsState().wagons.show) {
         <th colspan="2" pSortableColumn="wagons">
           <div class="d-flex align-items-center">
@@ -136,7 +129,6 @@
           </div>
         </th>
       }
-      <!-- Machines -->
       <th colspan="2" pSortableColumn="machines">
         <div class="d-flex align-items-center">
           <span>{{ 'options.column.machines' | translate }}</span>
@@ -156,7 +148,6 @@
           }
         </div>
       </th>
-      <!-- Beacons -->
       @if (columnsState().beacons.show) {
         <th colspan="2">
           <div class="d-flex align-items-center">
@@ -175,7 +166,6 @@
           </div>
         </th>
       }
-      <!-- Power -->
       @if (columnsState().power.show) {
         <th pSortableColumn="power">
           <div class="d-flex align-items-center justify-content-end">
@@ -186,7 +176,6 @@
           </div>
         </th>
       }
-      <!-- Pollution -->
       @if (columnsState().pollution.show) {
         <th pSortableColumn="pollution">
           <div class="d-flex align-items-center justify-content-end">
@@ -197,7 +186,6 @@
           </div>
         </th>
       }
-      <!-- Link -->
       @if (columnsState().link.show) {
         <th></th>
       }
@@ -206,7 +194,6 @@
   <ng-template pTemplate="body" let-_step let-expanded="expanded">
     @if (_step | asStep; as step) {
       <tr>
-        <!-- Expand row -->
         <td class="w-0 px-0 px-sm-1">
           <div [id]="'step_' + step.id" class="fragment"></div>
           @for (item of stepDetails()[step.id].tabs; track item.id) {
@@ -232,7 +219,6 @@
             ></button>
           </div>
         </td>
-        <!-- Checkbox -->
         @if (!focus() && columnsState().checkbox.show) {
           <td class="px-0 px-sm-2">
             <div class="d-flex justify-content-center">
@@ -244,7 +230,6 @@
             </div>
           </td>
         }
-        <!-- Tree -->
         @if (!focus() && columnsState().tree.show) {
           <td class="overflow-hidden px-0 px-sm-1 py-0">
             <div class="d-flex align-items-center links">
@@ -308,7 +293,6 @@
             </div>
           </td>
         }
-        <!-- Items (Value / Icon) -->
         @if (step.itemId && step.items) {
           <td class="w-0 px-0 px-sm-2 text-end">
             @if (step.surplus && step.surplus.nonzero()) {
@@ -357,7 +341,6 @@
         } @else {
           <td colspan="2"></td>
         }
-        <!-- Belts -->
         @if (columnsState().belts.show) {
           @if (step.itemId && step.belts) {
             @if (itemsState()[step.itemId].beltId; as beltId) {
@@ -368,7 +351,6 @@
               </td>
               <td class="px-0 pe-sm-2">
                 <div class="d-flex align-items-center">
-                  <!-- Belt/Pipe dropdown -->
                   @if (
                     data().beltIds.includes(beltId)
                       ? 'belt'
@@ -425,7 +407,6 @@
                       </ng-template>
                     </p-dropdown>
                   } @else {
-                    <!-- Pipe icon only -->
                     <i [class]="beltId | iconClass" [pTooltip]="tooltip">
                       <ng-template #tooltip>
                         <lab-tooltip [id]="beltId" type="pipe"></lab-tooltip>
@@ -439,7 +420,6 @@
             <td colspan="2"></td>
           }
         }
-        <!-- Wagons -->
         @if (columnsState().wagons.show) {
           @if (step.itemId && step.wagons) {
             @if (itemsState()[step.itemId].wagonId; as wagonId) {
@@ -450,7 +430,6 @@
               </td>
               <td class="px-0 pe-sm-2">
                 <div class="d-flex align-items-center">
-                  <!-- Wagon dropdown -->
                   @if (
                     data().cargoWagonIds.includes(wagonId)
                       ? 'cargo-wagon'
@@ -516,7 +495,6 @@
             <td colspan="2"></td>
           }
         }
-        <!-- Machines -->
         @if (step.recipeSettings?.machineId; as machineId) {
           <td class="w-0 px-0 px-sm-2 text-end">
             @if (
@@ -809,7 +787,6 @@
         } @else {
           <td colspan="2"></td>
         }
-        <!-- Beacons -->
         @if (columnsState().beacons.show) {
           <td colspan="2" class="px-0 px-sm-2">
             @if (
@@ -860,7 +837,6 @@
             }
           </td>
         }
-        <!-- Power -->
         @if (columnsState().power.show) {
           <td class="px-0 px-sm-2 text-end">
             @if (step.power && step.power.nonzero()) {
@@ -871,7 +847,6 @@
             }
           </td>
         }
-        <!-- Pollution -->
         @if (columnsState().pollution.show) {
           <td class="px-0 px-sm-2 text-end">
             @if (step.pollution && step.pollution.nonzero()) {
@@ -881,7 +856,6 @@
             }
           </td>
         }
-        <!-- Link -->
         @if (columnsState().link.show) {
           <td class="w-0 px-0 ps-sm-1">
             <div class="d-flex">
@@ -925,7 +899,6 @@
     }
   </ng-template>
   <ng-template pTemplate="rowexpansion" let-_step>
-    <!-- Details row tab menu -->
     @if (_step | asStep; as step) {
       <tr class="detail">
         <td class="px-1">
@@ -968,7 +941,6 @@
       </tr>
       @switch (expandTabMenu.activeItem?.label) {
         @case (StepDetailTab.Item) {
-          <!-- Item row details -->
           @if (stepDetails()[step.id].outputs.length) {
             <tr class="detail">
               <ng-container *ngTemplateOutlet="leftPad"></ng-container>
@@ -1050,7 +1022,6 @@
           }
         }
         @case (StepDetailTab.Recipe) {
-          <!-- Recipe row details -->
           @if (step.recipe) {
             @if (data().game === Game.Factorio && step.recipe.isMining) {
               <tr class="detail">
@@ -1221,7 +1192,6 @@
           }
         }
         @case (StepDetailTab.Machine) {
-          <!-- Machine row details -->
           <tr class="detail">
             <td></td>
             <td colspan="100">
@@ -1459,7 +1429,6 @@
           </tr>
         }
         @case (StepDetailTab.Recipes) {
-          <!-- Recipes row details -->
           @if (step.itemId && stepDetails()[step.id]; as stepDetails) {
             <tr class="detail">
               <td></td>
@@ -1859,4 +1828,4 @@
     </ng-template>
   </ng-template>
 </p-table>
-<lab-columns #columnsDlg></lab-columns>
+<lab-columns #columnsDlg></lab-columns> -->

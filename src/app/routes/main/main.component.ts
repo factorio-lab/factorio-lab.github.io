@@ -7,12 +7,6 @@ import {
   NgZone,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { DialogModule } from 'primeng/dialog';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { TabMenuModule } from 'primeng/tabmenu';
 import { map } from 'rxjs';
 
 import { HeaderComponent } from '~/components/header/header.component';
@@ -31,11 +25,6 @@ import { SettingsService } from '~/store/settings.service';
   standalone: true,
   imports: [
     AsyncPipe,
-    ButtonModule,
-    CardModule,
-    DialogModule,
-    ProgressSpinnerModule,
-    TabMenuModule,
     HeaderComponent,
     ObjectivesComponent,
     SettingsComponent,
@@ -64,7 +53,7 @@ export class MainComponent {
   tabItems$ = this.translateSvc
     .multi(['app.list', 'app.flow', 'app.data'])
     .pipe(
-      map(([list, flow, data]): MenuItem[] => [
+      map(([list, flow, data]): unknown[] => [
         {
           label: list,
           icon: 'fa-solid fa-list',

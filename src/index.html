@@ -39,12 +39,6 @@ desired objectives."
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono&amp;display=swap"
       rel="stylesheet"
     />
-    <link
-      id="lab-theme-css"
-      rel="stylesheet"
-      type="text/css"
-      href="theme-dark.css"
-    />
     <!-- Prefetch the landing image -->
     <link rel="prefetch" href="factoriolab.webp" as="image" type="image/webp" />
     <!-- Google tag (gtag.js) -->
@@ -61,17 +55,21 @@ desired objectives."
 
       gtag('config', 'G-TFR5Z43GPH');
     </script>
+    <!-- Set up theme -->
+    <script>
+      const prefStr = localStorage.getItem('preferences');
+      if (
+        (prefStr == null &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches) ||
+        JSON.parse(prefStr).theme === 'dark'
+      )
+        document.documentElement.classList.add('dark');
+    </script>
   </head>
-  <body>
+  <body class="dark:bg-zinc-950 dark:text-white">
     <lab-root>
-      <!-- Pure CSS spinner -->
-      <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="lds-ring">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+      <div class="flex h-dvh animate-pulse items-center justify-center">
+        <div class="spinner"></div>
       </div>
     </lab-root>
     <noscript

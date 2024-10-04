@@ -1,12 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DialogModule } from 'primeng/dialog';
-import { DropdownModule } from 'primeng/dropdown';
-import { TooltipModule } from 'primeng/tooltip';
 
-import { DropdownTranslateDirective } from '~/directives/dropdown-translate.directive';
 import { spread } from '~/helpers';
 import { FlowDiagram, flowDiagramOptions } from '~/models/enum/flow-diagram';
 import { sankeyAlignOptions } from '~/models/enum/sankey-align';
@@ -25,16 +19,7 @@ const initialValue = initialPreferencesState.flowSettings;
 @Component({
   selector: 'lab-flow-settings',
   standalone: true,
-  imports: [
-    FormsModule,
-    ButtonModule,
-    CheckboxModule,
-    DialogModule,
-    DropdownModule,
-    TooltipModule,
-    DropdownTranslateDirective,
-    TranslatePipe,
-  ],
+  imports: [FormsModule, TranslatePipe],
   templateUrl: './flow-settings.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

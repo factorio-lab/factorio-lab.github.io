@@ -14,28 +14,18 @@ import {
   inject,
   input,
   OnInit,
-  viewChild,
 } from '@angular/core';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { MenuItem, SortEvent } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DropdownModule } from 'primeng/dropdown';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { Table, TableModule } from 'primeng/table';
-import { TabMenuModule } from 'primeng/tabmenu';
-import { TooltipModule } from 'primeng/tooltip';
-import { BehaviorSubject, combineLatest, filter, first, pairwise } from 'rxjs';
+import { filter, first } from 'rxjs';
 
-import { DropdownBaseDirective } from '~/directives/dropdown-base.directive';
 import { NoDragDirective } from '~/directives/no-drag.directive';
 import { coalesce, updateSetIds } from '~/helpers';
 import { Game } from '~/models/enum/game';
 import { ItemId } from '~/models/enum/item-id';
 import { ObjectiveUnit } from '~/models/enum/objective-unit';
 import { stepDetailIcon, StepDetailTab } from '~/models/enum/step-detail-tab';
+import { MenuItem } from '~/models/menu-item';
 import { rational } from '~/models/rational';
 import { BeaconSettings } from '~/models/settings/beacon-settings';
 import { ModuleSettings } from '~/models/settings/module-settings';
@@ -85,21 +75,12 @@ export type StepsMode = 'all' | 'focus';
     KeyValuePipe,
     NgTemplateOutlet,
     RouterLink,
-    ButtonModule,
-    CheckboxModule,
-    DropdownModule,
-    InputNumberModule,
-    TableModule,
-    TabMenuModule,
-    TooltipModule,
     AsStepPipe,
     BeaconsOverlayComponent,
     ColumnsComponent,
-    DropdownBaseDirective,
     IconClassPipe,
     IconSmClassPipe,
     InserterSpeedPipe,
-    DropdownBaseDirective,
     LeftPadPipe,
     MachineRatePipe,
     MachineShowPipe,
@@ -136,7 +117,7 @@ export class StepsComponent implements OnInit, AfterViewInit {
 
   focus = input(false);
   selectedId = input<string | null>();
-  stepsTable = viewChild.required<Table>('stepsTable');
+  // stepsTable = viewChild.required<Table>('stepsTable');
 
   itemsState = this.itemsSvc.settings;
   itemsModified = this.itemsSvc.itemsModified;
@@ -173,12 +154,14 @@ export class StepsComponent implements OnInit, AfterViewInit {
     const focus = this.focus();
     const step = this.steps()[0];
     if (focus && step) {
-      this.stepsTable().toggleRow(step);
+      // TODO: Toggle row
+      // this.stepsTable().toggleRow(step);
       this.expandRow(step, false);
     }
   });
 
-  sortSteps$ = new BehaviorSubject<SortEvent | null>(null);
+  // TODO: Step sorting
+  // sortSteps$ = new BehaviorSubject<SortEvent | null>(null);
   activeItem: Entities<MenuItem> = {};
   stepDetailTab = storedSignal('stepDetailTab');
   fragmentId: string | null | undefined;
@@ -190,13 +173,13 @@ export class StepsComponent implements OnInit, AfterViewInit {
   ObjectiveUnit = ObjectiveUnit;
   rational = rational;
 
-  constructor() {
-    combineLatest([this.sortSteps$.pipe(pairwise()), toObservable(this._steps)])
-      .pipe(takeUntilDestroyed())
-      .subscribe(([[prev, curr], steps]) => {
-        this.sortSteps(prev, curr, steps);
-      });
-  }
+  // constructor() {
+  //   combineLatest([this.sortSteps$.pipe(pairwise()), toObservable(this._steps)])
+  //     .pipe(takeUntilDestroyed())
+  //     .subscribe(([[prev, curr], steps]) => {
+  //       this.sortSteps(prev, curr, steps);
+  //     });
+  // }
 
   ngOnInit(): void {
     this.route.fragment
@@ -226,7 +209,8 @@ export class StepsComponent implements OnInit, AfterViewInit {
       if (step == null) return;
       const tabs = stepDetails[step.id].tabs;
       if (!tabs.length) return;
-      this.stepsTable().toggleRow(step);
+      // TODO: Toggle row
+      // this.stepsTable().toggleRow(step);
       setTimeout(() => {
         if (tabId) {
           const tab = this.document.querySelector<HTMLElement>(`#${fragment}`);
@@ -240,49 +224,49 @@ export class StepsComponent implements OnInit, AfterViewInit {
     }
   }
 
-  sortSteps(
-    prev: SortEvent | null,
-    curr: SortEvent | null,
-    steps: Step[],
-  ): void {
-    if (curr?.order == null || curr.field == null) return;
-    const order = curr.order;
-    const field = curr.field as
-      | 'items'
-      | 'belts'
-      | 'wagons'
-      | 'machines'
-      | 'power'
-      | 'pollution';
+  // sortSteps(
+  //   prev: SortEvent | null,
+  //   curr: SortEvent | null,
+  //   steps: Step[],
+  // ): void {
+  //   if (curr?.order == null || curr.field == null) return;
+  //   const order = curr.order;
+  //   const field = curr.field as
+  //     | 'items'
+  //     | 'belts'
+  //     | 'wagons'
+  //     | 'machines'
+  //     | 'power'
+  //     | 'pollution';
 
-    if (
-      prev != null &&
-      prev.field === field &&
-      prev.order !== order &&
-      order === -1 &&
-      this.stepsTable != null
-    ) {
-      /**
-       * User has sorted the same column three times in a row. Reset sort and
-       * reset table state, otherwise PrimeNG will not ever reset sort.
-       */
-      curr.data?.sort((a: Step, b: Step) => {
-        const diff = steps.indexOf(a) - steps.indexOf(b);
-        return diff;
-      });
-      this.stepsTable().sortOrder = 0;
-      this.stepsTable().sortField = '';
-      this.stepsTable().reset();
-      this.sortSteps$.next(null);
-      return;
-    }
+  //   if (
+  //     prev != null &&
+  //     prev.field === field &&
+  //     prev.order !== order &&
+  //     order === -1 &&
+  //     this.stepsTable != null
+  //   ) {
+  //     /**
+  //      * User has sorted the same column three times in a row. Reset sort and
+  //      * reset table state, otherwise PrimeNG will not ever reset sort.
+  //      */
+  //     curr.data?.sort((a: Step, b: Step) => {
+  //       const diff = steps.indexOf(a) - steps.indexOf(b);
+  //       return diff;
+  //     });
+  //     this.stepsTable().sortOrder = 0;
+  //     this.stepsTable().sortField = '';
+  //     this.stepsTable().reset();
+  //     this.sortSteps$.next(null);
+  //     return;
+  //   }
 
-    // Sort by numeric field
-    curr.data?.sort((a: Step, b: Step) => {
-      const diff = (a[field] ?? rational(0n)).sub(b[field] ?? rational(0n));
-      return diff.toNumber() * order;
-    });
-  }
+  //   // Sort by numeric field
+  //   curr.data?.sort((a: Step, b: Step) => {
+  //     const diff = (a[field] ?? rational(0n)).sub(b[field] ?? rational(0n));
+  //     return diff.toNumber() * order;
+  //   });
+  // }
 
   setActiveItems(steps: Step[], stepDetails: Entities<StepDetail>): void {
     steps.forEach((step) => {

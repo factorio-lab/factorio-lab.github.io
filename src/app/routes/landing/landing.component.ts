@@ -2,12 +2,6 @@ import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DividerModule } from 'primeng/divider';
-import { DropdownModule } from 'primeng/dropdown';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { PickerComponent } from '~/components/picker/picker.component';
 import { Game, gameOptions } from '~/models/enum/game';
@@ -32,12 +26,6 @@ import { SettingsService } from '~/store/settings.service';
     AsyncPipe,
     FormsModule,
     RouterLink,
-    ButtonModule,
-    CardModule,
-    CheckboxModule,
-    DividerModule,
-    DropdownModule,
-    ProgressSpinnerModule,
     IconSmClassPipe,
     PickerComponent,
     TranslatePipe,
@@ -45,6 +33,7 @@ import { SettingsService } from '~/store/settings.service';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'flex items-center justify-center h-dvh' },
 })
 export class LandingComponent {
   router = inject(Router);

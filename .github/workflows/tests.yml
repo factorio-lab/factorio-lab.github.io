@@ -24,9 +24,6 @@ jobs:
       - name: Run ESLint
         run: npm run lint-build
 
-      - name: Run Stylelint
-        run: npm run stylelint
-
       - name: Run tests
         run: npm run test-build
 

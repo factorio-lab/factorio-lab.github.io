@@ -1,13 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SelectItem } from 'primeng/api';
+
+import { Option } from '~/models/option';
 
 @Pipe({ name: 'filterOptions', standalone: true })
 export class FilterOptionsPipe implements PipeTransform {
   transform(
-    value: SelectItem<string>[] | null | undefined,
+    value: Option[] | null | undefined,
     exclude: string[] | null | undefined,
     self?: string | null,
-  ): SelectItem[] {
+  ): Option[] {
     if (value == null) return [];
     if (!exclude?.length) return value;
 

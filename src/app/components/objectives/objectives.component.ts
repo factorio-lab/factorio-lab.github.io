@@ -6,17 +6,8 @@ import {
   inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Message } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { DropdownModule } from 'primeng/dropdown';
-import { MessagesModule } from 'primeng/messages';
-import { OrderListModule } from 'primeng/orderlist';
-import { ToggleButtonModule } from 'primeng/togglebutton';
-import { TooltipModule } from 'primeng/tooltip';
 import { combineLatest, EMPTY, first, map, Observable } from 'rxjs';
 
-import { DropdownTranslateDirective } from '~/directives/dropdown-translate.directive';
 import { NoDragDirective } from '~/directives/no-drag.directive';
 import { AdjustedDataset } from '~/models/dataset';
 import { displayRateOptions } from '~/models/enum/display-rate';
@@ -28,6 +19,7 @@ import {
 import { ObjectiveUnit } from '~/models/enum/objective-unit';
 import { SimplexResultType } from '~/models/enum/simplex-result-type';
 import { MatrixResult } from '~/models/matrix-result';
+import { Message } from '~/models/message';
 import { ObjectiveState } from '~/models/objective';
 import { rational } from '~/models/rational';
 import { Settings } from '~/models/settings/settings';
@@ -53,14 +45,6 @@ import { TooltipComponent } from '../tooltip/tooltip.component';
   imports: [
     AsyncPipe,
     FormsModule,
-    ButtonModule,
-    CardModule,
-    DropdownModule,
-    MessagesModule,
-    OrderListModule,
-    ToggleButtonModule,
-    TooltipModule,
-    DropdownTranslateDirective,
     NoDragDirective,
     PickerComponent,
     IconSmClassPipe,

@@ -5,7 +5,6 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { OverlayPanel } from 'primeng/overlaypanel';
 
 @Component({ template: '' })
 export abstract class ModalComponent {
@@ -39,15 +38,15 @@ export abstract class DialogComponent extends ModalComponent {
 
 @Component({ template: '' })
 export abstract class OverlayComponent extends ModalComponent {
-  overlayPanel = viewChild.required(OverlayPanel);
+  // overlayPanel = viewChild.required(OverlayPanel);
 
   hide(cancel?: true): void {
     if (cancel === true) this.cancel.set(cancel);
-    this.overlayPanel().hide();
+    // this.overlayPanel().hide();
   }
 
   protected _show(event: Event): void {
     this.cancel.set(false);
-    this.overlayPanel().toggle(event);
+    // this.overlayPanel().toggle(event);
   }
 }

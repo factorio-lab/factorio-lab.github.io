@@ -1,5 +1,4 @@
-import { MenuItem } from 'primeng/api';
-
+import { MenuItem } from './menu-item';
 import { Rational } from './rational';
 import { Step } from './step';
 

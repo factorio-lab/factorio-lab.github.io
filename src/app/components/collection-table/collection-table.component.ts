@@ -7,11 +7,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
-import { MultiSelectModule } from 'primeng/multiselect';
-import { TableModule } from 'primeng/table';
 
-import { PagedTableDirective } from '~/directives/paged-table.directive';
 import { CollectionItem } from '~/models/collection-item';
 import { Category } from '~/models/data/category';
 import { Item } from '~/models/data/item';
@@ -27,16 +23,7 @@ type Entity = Category | Item | RecipeJson;
 @Component({
   selector: 'lab-collection-table',
   standalone: true,
-  imports: [
-    FormsModule,
-    RouterLink,
-    ButtonModule,
-    MultiSelectModule,
-    TableModule,
-    IconSmClassPipe,
-    PagedTableDirective,
-    TranslatePipe,
-  ],
+  imports: [FormsModule, RouterLink, IconSmClassPipe, TranslatePipe],
   templateUrl: './collection-table.component.html',
   styleUrls: ['./collection-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

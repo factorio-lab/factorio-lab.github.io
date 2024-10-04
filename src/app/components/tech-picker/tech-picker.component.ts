@@ -11,17 +11,8 @@ import {
   viewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FilterService } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DialogModule } from 'primeng/dialog';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { TooltipModule } from 'primeng/tooltip';
 import { first } from 'rxjs';
 
-import { Item } from '~/models/data/item';
 import { Game } from '~/models/enum/game';
 import { Optional } from '~/models/utils';
 import { IconSmClassPipe } from '~/pipes/icon-class.pipe';
@@ -42,13 +33,6 @@ export type UnlockStatus = 'available' | 'locked' | 'researched';
   imports: [
     FormsModule,
     NgTemplateOutlet,
-    ButtonModule,
-    CheckboxModule,
-    DialogModule,
-    InputTextModule,
-    InputTextareaModule,
-    ScrollPanelModule,
-    TooltipModule,
     IconSmClassPipe,
     TooltipComponent,
     TranslatePipe,
@@ -57,7 +41,6 @@ export type UnlockStatus = 'available' | 'locked' | 'researched';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TechPickerComponent extends DialogComponent {
-  filterSvc = inject(FilterService);
   contentSvc = inject(ContentService);
   preferencesSvc = inject(PreferencesService);
   settingsSvc = inject(SettingsService);
@@ -87,12 +70,14 @@ export class TechPickerComponent extends DialogComponent {
     let technologyIds = data.technologyIds;
     if (filter) {
       const technologies = technologyIds.map((i) => data.itemEntities[i]);
-      const filtered = this.filterSvc.filter(
-        technologies,
-        ['name'],
-        filter,
-        'contains',
-      ) as Item[];
+      // TODO: Implement filter service
+      const filtered = technologies;
+      // const filtered = this.filterSvc.filter(
+      //   technologies,
+      //   ['name'],
+      //   filter,
+      //   'contains',
+      // ) as Item[];
       technologyIds = filtered.map((t) => t.id);
 
       selection = selection.filter((i) => technologyIds.includes(i));
@@ -159,7 +144,7 @@ game.write_file("techs.txt", table.concat(list, ","))
       .get('techPicker.exportScriptCopied')
       .pipe(first())
       .subscribe((detail) => {
-        this.contentSvc.showToast$.next({
+        this.contentSvc.toast({
           severity: 'success',
           detail,
           contentStyleClass: 'detail-only',

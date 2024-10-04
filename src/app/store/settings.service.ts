@@ -1,5 +1,4 @@
 import { computed, effect, inject, Injectable } from '@angular/core';
-import { MenuItem, SelectItem } from 'primeng/api';
 import { environment } from 'src/environments';
 
 import {
@@ -36,7 +35,9 @@ import { objectiveUnitOptions } from '~/models/enum/objective-unit';
 import { Preset, presetOptions } from '~/models/enum/preset';
 import { researchBonusValue } from '~/models/enum/research-bonus';
 import { gameInfo } from '~/models/game-info';
+import { MenuItem } from '~/models/menu-item';
 import { Mod } from '~/models/mod';
+import { Option } from '~/models/option';
 import { Options } from '~/models/options';
 import { Rational, rational } from '~/models/rational';
 import { BeaconSettings } from '~/models/settings/beacon-settings';
@@ -172,7 +173,7 @@ export class SettingsService extends Store<SettingsState> {
     const states = this.gameStates();
     return Object.keys(states)
       .sort()
-      .map((i): SelectItem<string> => ({ label: i, value: i }));
+      .map((i): Option => ({ label: i, value: i }));
   });
 
   gameInfo = computed(() => {

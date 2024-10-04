@@ -1,50 +1,50 @@
-@import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/variables';
-@import 'bootstrap/scss/mixins/breakpoints';
+// @import 'bootstrap/scss/functions';
+// @import 'bootstrap/scss/variables';
+// @import 'bootstrap/scss/mixins/breakpoints';
 
-.objectives-content {
-  max-width: 1000px;
-}
+// .objectives-content {
+//   max-width: 1000px;
+// }
 
-.objectives-buttons {
-  gap: 0.25rem;
-}
+// .objectives-buttons {
+//   gap: 0.25rem;
+// }
 
-.p-inputgroup {
-  p-dropdown.icon {
-    flex: 0 0 36px;
-  }
-}
+// .p-inputgroup {
+//   p-dropdown.icon {
+//     flex: 0 0 36px;
+//   }
+// }
 
-@include media-breakpoint-up(sm) {
-  button.text-truncate,
-  .p-inputgroup lab-input-number.p-inputwrapper {
-    flex: 0 0 25%;
-  }
-}
+// @include media-breakpoint-up(sm) {
+//   button.text-truncate,
+//   .p-inputgroup lab-input-number.p-inputwrapper {
+//     flex: 0 0 25%;
+//   }
+// }
 
-@include media-breakpoint-down(sm) {
-  .p-inputgroup lab-input-number.p-inputwrapper {
-    flex: 0 0 15%;
-  }
-}
+// @include media-breakpoint-down(sm) {
+//   .p-inputgroup lab-input-number.p-inputwrapper {
+//     flex: 0 0 15%;
+//   }
+// }
 
-:host ::ng-deep {
-  @include media-breakpoint-down(sm) {
-    button.lab-button-icon-only {
-      justify-content: center;
-      padding: 0.5rem 0;
-      width: 2.571rem;
+// :host ::ng-deep {
+//   @include media-breakpoint-down(sm) {
+//     button.lab-button-icon-only {
+//       justify-content: center;
+//       padding: 0.5rem 0;
+//       width: 2.571rem;
 
-      .p-button-icon {
-        margin: 0;
-      }
+//       .p-button-icon {
+//         margin: 0;
+//       }
 
-      .p-button-label {
-        flex: 0 0 auto;
-        visibility: hidden;
-        width: 0;
-      }
-    }
-  }
-}
+//       .p-button-label {
+//         flex: 0 0 auto;
+//         visibility: hidden;
+//         width: 0;
+//       }
+//     }
+//   }
+// }

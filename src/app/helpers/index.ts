@@ -1,9 +1,9 @@
-import { SelectItem } from 'primeng/api';
 import { filter, OperatorFunction } from 'rxjs';
 import { environment } from 'src/environments';
 
 import { APP } from '~/models/constants';
 import { ItemId } from '~/models/enum/item-id';
+import { Option } from '~/models/option';
 import { Rational, rational } from '~/models/rational';
 import {
   Entities,
@@ -124,14 +124,9 @@ export function getIdOptions(
   ids: string[],
   entities: Entities<{ name: string }>,
   emptyModule = false,
-): SelectItem<string>[] {
-  const list = ids.map(
-    (i): SelectItem<string> => ({ label: entities[i].name, value: i }),
-  );
-  if (emptyModule) {
-    list.unshift({ label: 'None', value: ItemId.Module });
-  }
-
+): Option[] {
+  const list = ids.map((i): Option => ({ label: entities[i].name, value: i }));
+  if (emptyModule) list.unshift({ label: 'None', value: ItemId.Module });
   return list;
 }
 

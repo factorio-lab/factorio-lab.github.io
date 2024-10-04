@@ -5,8 +5,6 @@ import {
   Output,
   signal,
 } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 import { spread } from '~/helpers';
 import { Machine } from '~/models/data/machine';
@@ -19,7 +17,7 @@ import { ModulesComponent } from '../modules/modules.component';
 @Component({
   selector: 'lab-modules-overlay',
   standalone: true,
-  imports: [ButtonModule, OverlayPanelModule, ModulesComponent, TranslatePipe],
+  imports: [ModulesComponent, TranslatePipe],
   templateUrl: './modules-overlay.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

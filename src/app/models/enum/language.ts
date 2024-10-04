@@ -1,4 +1,4 @@
-import { SelectItem } from 'primeng/api';
+import { Option } from '../option';
 
 export enum Language {
   English = 'en',
@@ -9,7 +9,7 @@ export enum Language {
   Japanese = 'ja',
 }
 
-export const languageOptions: SelectItem<Language>[] = [
+export const languageOptions: Option<Language>[] = [
   { label: 'English', value: Language.English },
   { label: '简体中文 (Chinese)', value: Language.Chinese },
   { label: 'Deutsch (German)', value: Language.German },

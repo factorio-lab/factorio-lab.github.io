@@ -1,14 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MenuItem } from 'primeng/api';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
-import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
 
 import { InputNumberComponent } from '~/components/input-number/input-number.component';
 import { coalesce, updateSetIds } from '~/helpers';
 import { Recipe } from '~/models/data/recipe';
 import { Game } from '~/models/enum/game';
+import { MenuItem } from '~/models/menu-item';
 import { RecipeState } from '~/models/settings/recipe-settings';
 import { IconClassPipe, IconSmClassPipe } from '~/pipes/icon-class.pipe';
 import { RoundPipe } from '~/pipes/round.pipe';
@@ -21,9 +18,6 @@ import { DetailComponent } from '../../models/detail.component';
   standalone: true,
   imports: [
     FormsModule,
-    BreadcrumbModule,
-    ButtonModule,
-    CheckboxModule,
     IconClassPipe,
     IconSmClassPipe,
     InputNumberComponent,
@@ -42,7 +36,7 @@ export class RecipeComponent extends DetailComponent {
   obj = computed<Recipe | undefined>(
     () => this.data().recipeEntities[this.id()],
   );
-  breadcrumb = computed<MenuItem[]>(() => [
+  breadcrumb = computed((): MenuItem[] => [
     this.parent() ?? {},
     { label: this.obj()?.name },
   ]);

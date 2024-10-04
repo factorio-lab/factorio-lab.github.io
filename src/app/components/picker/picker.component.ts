@@ -9,18 +9,10 @@ import {
   viewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FilterService, SelectItem } from 'primeng/api';
-import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DialogModule } from 'primeng/dialog';
-import { InputTextModule } from 'primeng/inputtext';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { TabViewModule } from 'primeng/tabview';
-import { TooltipModule } from 'primeng/tooltip';
 
-import { TabViewOverrideDirective } from '~/directives/tabview-override.directive';
 import { coalesce } from '~/helpers';
 import { Category } from '~/models/data/category';
+import { Option } from '~/models/option';
 import { Entities } from '~/models/utils';
 import { IconSmClassPipe } from '~/pipes/icon-class.pipe';
 import { TranslatePipe } from '~/pipes/translate.pipe';
@@ -33,25 +25,11 @@ import { TooltipComponent } from '../tooltip/tooltip.component';
 @Component({
   selector: 'lab-picker',
   standalone: true,
-  imports: [
-    FormsModule,
-    ButtonModule,
-    CheckboxModule,
-    DialogModule,
-    InputTextModule,
-    ScrollPanelModule,
-    TooltipModule,
-    TabViewModule,
-    IconSmClassPipe,
-    TabViewOverrideDirective,
-    TooltipComponent,
-    TranslatePipe,
-  ],
+  imports: [FormsModule, IconSmClassPipe, TooltipComponent, TranslatePipe],
   templateUrl: './picker.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PickerComponent extends DialogComponent {
-  filterSvc = inject(FilterService);
   contentSvc = inject(ContentService);
   settingsSvc = inject(SettingsService);
 
@@ -74,7 +52,7 @@ export class PickerComponent extends DialogComponent {
   categoryIds: string[] = [];
   categoryRows: Entities<string[][]> = {};
   // Preserve state prior to any filtering
-  allSelectItems: SelectItem<string>[] = [];
+  allSelectItems: Option[] = [];
   allCategoryIds: string[] = [];
   allCategoryRows: Entities<string[][]> = {};
   activeIndex = 0;
@@ -110,10 +88,10 @@ export class PickerComponent extends DialogComponent {
       });
 
       this.allSelectItems = allIds.map(
-        (i): SelectItem<string> => ({
+        (i): Option => ({
           label: data.itemEntities[i].name,
           value: i,
-          title: data.itemEntities[i].category,
+          category: data.itemEntities[i].category,
         }),
       );
 
@@ -138,10 +116,10 @@ export class PickerComponent extends DialogComponent {
       });
 
       this.allSelectItems = allIds.map(
-        (i): SelectItem<string> => ({
+        (i): Option => ({
           label: data.recipeEntities[i].name,
           value: i,
-          title: data.recipeEntities[i].category,
+          category: data.recipeEntities[i].category,
         }),
       );
 
@@ -210,17 +188,19 @@ export class PickerComponent extends DialogComponent {
     }
 
     // Filter for matching item ids
-    const filteredItems = this.filterSvc.filter(
-      this.allSelectItems,
-      ['label'],
-      this.search,
-      'contains',
-    ) as SelectItem<string>[];
+    // TODO: Implement filter service
+    const filteredItems = this.allSelectItems;
+    // const filteredItems = this.filterSvc.filter(
+    //   this.allSelectItems,
+    //   ['label'],
+    //   this.search,
+    //   'contains',
+    // ) as SelectItem<string>[];
 
     // Filter for matching category ids
     // (Cache category on the SelectItem `title` field)
     this.categoryIds = this.allCategoryIds.filter((c) =>
-      filteredItems.some((i) => i.title === c),
+      filteredItems.some((i) => i.category === c),
     );
 
     // Filter category rows

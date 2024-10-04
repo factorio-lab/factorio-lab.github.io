@@ -1,23 +1,14 @@
 import { KeyValuePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
-import { ButtonModule } from 'primeng/button';
-import { TableModule } from 'primeng/table';
 
+import { MenuItem } from '~/models/menu-item';
 import { TranslatePipe } from '~/pipes/translate.pipe';
 import { SettingsService } from '~/store/settings.service';
 
 @Component({
   selector: 'lab-data',
   standalone: true,
-  imports: [
-    KeyValuePipe,
-    BreadcrumbModule,
-    ButtonModule,
-    TableModule,
-    TranslatePipe,
-  ],
+  imports: [KeyValuePipe, TranslatePipe],
   templateUrl: './data.component.html',
   styleUrls: ['./data.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -16,28 +16,18 @@ import {
 } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { loadModule } from 'glpk-ts';
-import { PrimeNGConfig } from 'primeng/api';
 import { environment } from 'src/environments';
 
 import { routes } from './app.routes';
 import { ErrorService } from './services/error.service';
-import { ThemeService } from './services/theme.service';
 import {
   DEFAULT_LANGUAGE,
   TranslateService,
 } from './services/translate.service';
 
-function initializeApp(primengConfig: PrimeNGConfig): () => Promise<unknown> {
-  return () => {
-    // Enable ripple
-    primengConfig.ripple = true;
-
-    // Set up initial theme
-    ThemeService.appInitTheme();
-
-    // Load glpk-wasm
-    return loadModule('assets/glpk-wasm/glpk.all.wasm');
-  };
+function initializeApp(): () => Promise<unknown> {
+  // Load glpk-wasm
+  return () => loadModule('assets/glpk-wasm/glpk.all.wasm');
 }
 
 export const appConfig: ApplicationConfig = {
@@ -48,7 +38,6 @@ export const appConfig: ApplicationConfig = {
     {
       provide: APP_INITIALIZER,
       deps: [
-        PrimeNGConfig,
         /**
          * Not actually used by `initializeApp`; included to ensure service
          * constructor is run so language data is requested immediately.

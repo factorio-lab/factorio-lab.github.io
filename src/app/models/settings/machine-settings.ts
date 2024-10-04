@@ -1,5 +1,4 @@
-import { SelectItem } from 'primeng/api';
-
+import { Option } from '../option';
 import { Rational } from '../rational';
 import { BeaconSettings } from './beacon-settings';
 import { ModuleSettings } from './module-settings';
@@ -13,7 +12,7 @@ export interface MachineState {
 
 export interface MachineSettings extends MachineState {
   defaultFuelId?: string;
-  fuelOptions?: SelectItem<string>[];
-  moduleOptions?: SelectItem<string>[];
+  fuelOptions?: Option[];
+  moduleOptions?: Option[];
   defaultOverclock?: Rational;
 }

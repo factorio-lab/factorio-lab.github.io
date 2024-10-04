@@ -7,12 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { DropdownChangeEvent, DropdownModule } from 'primeng/dropdown';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { TooltipModule } from 'primeng/tooltip';
 
-import { DropdownBaseDirective } from '~/directives/dropdown-base.directive';
 import { spread } from '~/helpers';
 import { ItemId } from '~/models/enum/item-id';
 import { Rational, rational } from '~/models/rational';
@@ -33,11 +28,6 @@ import { TooltipComponent } from '../tooltip/tooltip.component';
   standalone: true,
   imports: [
     FormsModule,
-    ButtonModule,
-    DropdownModule,
-    OverlayPanelModule,
-    TooltipModule,
-    DropdownBaseDirective,
     IconSmClassPipe,
     InputNumberComponent,
     ModulesComponent,
@@ -76,13 +66,13 @@ export class BeaconsOverlayComponent extends OverlayComponent {
     });
   }
 
-  setId(i: number, event: DropdownChangeEvent): void {
-    event.originalEvent.stopPropagation();
-    this.beacons.update((values) => {
-      values[i].id = event.value as Optional<string>;
-      return values;
-    });
-  }
+  // setId(i: number, event: DropdownChangeEvent): void {
+  //   event.originalEvent.stopPropagation();
+  //   this.beacons.update((values) => {
+  //     values[i].id = event.value as Optional<string>;
+  //     return values;
+  //   });
+  // }
 
   setModules(i: number, modules: ModuleSettings[]): void {
     this.beacons.update((values) => {
