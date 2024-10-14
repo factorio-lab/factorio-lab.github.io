@@ -73,4 +73,7 @@ export class RecipeComponent extends DetailComponent {
   resetRecipe(value: string): void {
     this.store.dispatch(new Recipes.ResetRecipeAction(value));
   }
+  asArray(value: string | string[]): string[] {
+    return Array.isArray(value) ? value : [value];
+  }
 }

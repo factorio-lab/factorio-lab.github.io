@@ -15,8 +15,8 @@ export interface RecipeJson {
   cost?: number | string;
   /** If recipe is a rocket launch, indicates the rocket part recipe used */
   part?: string;
-  /** If a recipe is locked initially, indicates what technology is required */
-  unlockedBy?: string;
+  /** If a recipe is locked initially, indicates which technology is required */
+  unlockedBy?: string | string[];
   isMining?: boolean;
   isTechnology?: boolean;
   isBurn?: boolean;
@@ -42,8 +42,8 @@ export interface Recipe {
   cost?: Rational;
   /** If recipe is a rocket launch, indicates the rocket part recipe used */
   part?: string;
-  /** If a recipe is locked initially, indicates what technology unlocks it */
-  unlockedBy?: string;
+  /** If a recipe is locked initially, indicates which technology unlocks it */
+  unlockedBy?: string | string[];
   isMining?: boolean;
   isTechnology?: boolean;
   isBurn?: boolean;

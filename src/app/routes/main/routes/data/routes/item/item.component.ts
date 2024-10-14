@@ -51,7 +51,12 @@ export class ItemComponent extends DetailComponent {
       if (recipe.out[id]) producedBy.push(r);
       if (recipe.in[id]) consumedBy.push(r);
       if (recipe.producers.includes(id)) producible.push(r);
-      if (recipe.unlockedBy === id) unlocked.push(r);
+      if (
+        (typeof recipe.unlockedBy === 'string' && recipe.unlockedBy === id) ||
+        (typeof recipe.unlockedBy !== 'string' &&
+          recipe.unlockedBy?.some((u) => u === id))
+      )
+        unlocked.push(r);
     }
 
     return { producedBy, consumedBy, producible, unlocked };

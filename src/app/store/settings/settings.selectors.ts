@@ -599,7 +599,10 @@ export const getAvailableRecipes = createSelector(
     const set = new Set(researchedTechnologyIds);
     return data.recipeIds.filter((i) => {
       const recipe = data.recipeEntities[i];
-      return recipe.unlockedBy == null || set.has(recipe.unlockedBy);
+      return (
+        recipe.unlockedBy == null ||
+        [recipe.unlockedBy].flat().some((unlock) => set.has(unlock))
+      );
     });
   },
 );

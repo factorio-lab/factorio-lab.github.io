@@ -136,19 +136,21 @@
       <tr>
         <th>{{ 'data.unlockedBy' | translate }}</th>
         <td>
-          <a
-            [routerLink]="'/data/technologies/' + obj.unlockedBy"
-            queryParamsHandling="preserve"
-          >
-            <button
-              pButton
-              pRipple
-              type="button"
-              class="p-button-text"
-              [label]="data().itemEntities[obj.unlockedBy].name"
-              [icon]="obj.unlockedBy | iconSmClass: 'recipe'"
-            ></button>
-          </a>
+          @for (unlock of asArray(obj.unlockedBy); track unlock) {
+            <a
+              [routerLink]="'/data/technologies/' + unlock"
+              queryParamsHandling="preserve"
+            >
+              <button
+                pButton
+                pRipple
+                type="button"
+                class="p-button-text"
+                [label]="data().itemEntities[unlock].name"
+                [icon]="unlock | iconSmClass: 'recipe'"
+              ></button>
+            </a>
+          }
         </td>
       </tr>
     }

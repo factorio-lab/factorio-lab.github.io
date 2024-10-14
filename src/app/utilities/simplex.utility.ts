@@ -227,7 +227,9 @@ export class SimplexUtility {
         return (
           !recipesState[r].excluded &&
           (recipe.unlockedBy == null ||
-            researchedTechnologyIds.indexOf(recipe.unlockedBy) !== -1)
+            [recipe.unlockedBy]
+              .flat()
+              .some((id) => researchedTechnologyIds.includes(id)))
         );
       }),
       itemIds: data.itemIds.filter((i) => !itemsState[i].excluded),
