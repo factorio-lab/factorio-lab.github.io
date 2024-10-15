@@ -1,43 +1,64 @@
+import { DIALOG_DATA } from '@angular/cdk/dialog';
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   EventEmitter,
   inject,
-  input,
+  OnInit,
   Output,
-  viewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import { coalesce } from '~/helpers';
 import { Category } from '~/models/data/category';
 import { Option } from '~/models/option';
 import { Entities } from '~/models/utils';
-import { IconSmClassPipe } from '~/pipes/icon-class.pipe';
+import { IconClassPipe, IconSmClassPipe } from '~/pipes/icon-class.pipe';
 import { TranslatePipe } from '~/pipes/translate.pipe';
 import { ContentService } from '~/services/content.service';
 import { SettingsService } from '~/store/settings.service';
 
-import { DialogComponent } from '../modal';
 import { TooltipComponent } from '../tooltip/tooltip.component';
+
+export interface PickerConfig {
+  header: string;
+  type: 'item' | 'recipe';
+  allIds: string[];
+}
 
 @Component({
   selector: 'lab-picker',
   standalone: true,
-  imports: [FormsModule, IconSmClassPipe, TooltipComponent, TranslatePipe],
+  imports: [
+    FormsModule,
+    FaIconComponent,
+    IconSmClassPipe,
+    IconClassPipe,
+    TooltipComponent,
+    TranslatePipe,
+  ],
   templateUrl: './picker.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'flex flex-col gap-2 w-[540px]',
+  },
 })
-export class PickerComponent extends DialogComponent {
+export class PickerComponent implements OnInit {
+  dialogData = inject<PickerConfig>(DIALOG_DATA);
   contentSvc = inject(ContentService);
   settingsSvc = inject(SettingsService);
 
-  filterInput = viewChild.required<ElementRef<HTMLInputElement>>('filterInput');
+  // filterInput = viewChild.required<ElementRef<HTMLInputElement>>('filterInput');
 
-  header = input('');
+  // header = input('');
   @Output() selectId = new EventEmitter<string>();
   @Output() selectIds = new EventEmitter<Set<string>>();
+
+  icon = {
+    magnifyingGlass: faMagnifyingGlass,
+  };
 
   data = this.settingsSvc.dataset;
 
@@ -56,6 +77,10 @@ export class PickerComponent extends DialogComponent {
   allCategoryIds: string[] = [];
   allCategoryRows: Entities<string[][]> = {};
   activeIndex = 0;
+
+  ngOnInit(): void {
+    this.clickOpen(this.dialogData.type, this.dialogData.allIds);
+  }
 
   clickOpen(
     type: 'item' | 'recipe',
@@ -138,11 +163,10 @@ export class PickerComponent extends DialogComponent {
     );
     this.allCategoryIds = this.categoryIds;
     this.allCategoryRows = this.categoryRows;
-    this.show();
 
     if (!this.contentSvc.isMobile()) {
       setTimeout(() => {
-        this.filterInput().nativeElement.focus();
+        // this.filterInput().nativeElement.focus();
       });
     }
   }
@@ -170,7 +194,6 @@ export class PickerComponent extends DialogComponent {
       this.allSelected = this.selection.length === 0;
     } else {
       this.selectId.emit(id);
-      this.visible = false;
     }
   }
 

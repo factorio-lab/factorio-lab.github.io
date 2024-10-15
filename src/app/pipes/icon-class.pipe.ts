@@ -6,7 +6,7 @@ import { IdType } from '~/models/enum/id-type';
 export class IconClassPipe implements PipeTransform {
   transform(value: string | null | undefined, type: IdType = 'item'): string {
     if (value == null) return '';
-    return `lab-icon ${type} ${value}`;
+    return `ico ${type} ${value}`;
   }
 }
 
@@ -17,7 +17,7 @@ export class IconSmClassPipe implements PipeTransform {
     type: IdType = 'item',
   ): string {
     if (value == null) return '';
-    return `lab-icon sm ${type} ${value}`;
+    return `ico sm ${type} ${value}`;
   }
 
   transform(value: string | null | undefined, type: IdType = 'item'): string {

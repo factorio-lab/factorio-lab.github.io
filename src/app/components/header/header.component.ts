@@ -61,7 +61,7 @@ export class HeaderComponent {
           .filter(([g]) => g !== game)
           .map(
             ([g, label]): MenuItem => ({
-              icon: 'lab-icon small ' + gameInfo[g].icon,
+              icon: 'ico small ' + gameInfo[g].icon,
               label,
               routerLink: gameInfo[g].route,
             }),

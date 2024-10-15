@@ -1,26 +1,40 @@
 @if (mod() != null) {
-  <div class="flex flex-col rounded-lg border p-4 shadow">
+  <div class="flex flex-col gap-2 rounded border bg-zinc-900 p-3 shadow">
     <div class="flex justify-center">
       <img src="factoriolab.webp" alt="FactorioLab" height="128" width="128" />
     </div>
-    <div class="mt-2" [innerHTML]="'landing.welcome' | translate"></div>
+    <div [innerHTML]="'landing.welcome' | translate"></div>
+    <lab-select
+      inputId="game"
+      label="settings.game"
+      [ngModel]="data().game"
+      [options]="gameOptions"
+      (onChange)="setGame($event)"
+    ></lab-select>
+    @if (data().game === Game.Factorio) {
+      <lab-select
+        inputId="mod"
+        label="settings.modSet"
+        [ngModel]="modId()"
+        [options]="modOptions"
+        (onChange)="setMod($event)"
+      ></lab-select>
+    }
 
-    <div class="my-2 flex flex-col">
-      <label for="game" class="px-1 text-sm">{{
-        'settings.game' | translate
-      }}</label>
-      <select
-        id="game"
-        #gameSelect
-        class="rounded-lg border p-2 dark:bg-zinc-900"
-        [ngModel]="data().game"
-        (change)="setGame($any(gameSelect.value))"
-      >
-        @for (game of gameOptions; track game.value) {
-          <option [value]="game.value">{{ game.label | translate }}</option>
-        }
-      </select>
-    </div>
+    <button type="button" class="btn" (click)="openPicker()">
+      <fa-icon [icon]="icon.box"></fa-icon>
+      <div class="grow text-center">{{ 'landing.addItems' | translate }}</div>
+    </button>
+    <!-- <lab-picker
+      #addItemPicker
+      [header]="'landing.selectAnItem' | translate"
+      (selectId)="selectItem($event)"
+    ></lab-picker>
+    <lab-picker
+      #addRecipePicker
+      [header]="'landing.selectARecipe' | translate"
+      (selectId)="selectRecipe($event)"
+    ></lab-picker> -->
   </div>
   <!-- <p-card>
     <div class="d-flex flex-column">
@@ -151,7 +165,6 @@
   </p-card> -->
 } @else {
   <div class="spinner"></div>
-  <!-- <p-progressSpinner></p-progressSpinner> -->
 }
 
 <span class="absolute bottom-0 mb-3">{{ contentSvc.version$ | async }}</span>

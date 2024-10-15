@@ -1,100 +1,100 @@
-@import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/variables';
-@import 'bootstrap/scss/mixins/breakpoints';
+// @import 'bootstrap/scss/functions';
+// @import 'bootstrap/scss/variables';
+// @import 'bootstrap/scss/mixins/breakpoints';
 
-.links {
-  // Tree container
-  height: 50px;
+// .links {
+//   // Tree container
+//   height: 50px;
 
-  // One width segment of the tree
-  .connect {
-    position: relative;
-    margin-left: 16px;
-    height: 100vh;
+//   // One width segment of the tree
+//   .connect {
+//     position: relative;
+//     margin-left: 16px;
+//     height: 100vh;
 
-    // Segment contains trail
-    &.last,
-    &.trail {
-      border-left: 2px dotted var(--text-color-secondary);
-    }
+//     // Segment contains trail
+//     &.last,
+//     &.trail {
+//       border-left: 2px dotted var(--text-color-secondary);
+//     }
 
-    // Segment ends at this row
-    &.last:not(.trail) {
-      margin-bottom: 50vh;
-      height: 50vh;
-    }
+//     // Segment ends at this row
+//     &.last:not(.trail) {
+//       margin-bottom: 50vh;
+//       height: 50vh;
+//     }
 
-    // Segments should pad between
-    & + .connect {
-      margin-left: 24px;
-    }
+//     // Segments should pad between
+//     & + .connect {
+//       margin-left: 24px;
+//     }
 
-    @include media-breakpoint-down(xl) {
-      margin-left: 8px;
+//     @include media-breakpoint-down(xl) {
+//       margin-left: 8px;
 
-      + .connect {
-        margin-left: 16px;
-      }
-    }
-  }
+//       + .connect {
+//         margin-left: 16px;
+//       }
+//     }
+//   }
 
-  .indent {
-    margin-left: 0;
-    border-top: 2px dotted var(--text-color-secondary);
-    width: 8px;
-  }
+//   .indent {
+//     margin-left: 0;
+//     border-top: 2px dotted var(--text-color-secondary);
+//     width: 8px;
+//   }
 
-  .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-  }
-}
+//   .icon {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     width: 32px;
+//     height: 32px;
+//   }
+// }
 
-:host ::ng-deep {
-  // Mask input fields
-  .p-dropdown,
-  .p-inputtext {
-    // For some reason, this breaks unless ::ng-deep is included on each
-    &:not(:is(:hover, ::ng-deep :focus, ::ng-deep .ng-invalid)) {
-      border-color: transparent;
-      background-color: transparent;
-    }
-  }
-}
+// :host ::ng-deep {
+//   // Mask input fields
+//   .p-dropdown,
+//   .p-inputtext {
+//     // For some reason, this breaks unless ::ng-deep is included on each
+//     &:not(:is(:hover, ::ng-deep :focus, ::ng-deep .ng-invalid)) {
+//       border-color: transparent;
+//       background-color: transparent;
+//     }
+//   }
+// }
 
-tr.detail {
-  background-color: var(--surface-ground);
-}
+// tr.detail {
+//   background-color: var(--surface-ground);
+// }
 
-:host
-  ::ng-deep
-  tr.detail
-  .p-tabmenu
-  .p-tabmenu-nav
-  .p-tabmenuitem:not(.p-highlight)
-  .p-menuitem-link {
-  background-color: transparent;
-}
+// :host
+//   ::ng-deep
+//   tr.detail
+//   .p-tabmenu
+//   .p-tabmenu-nav
+//   .p-tabmenuitem:not(.p-highlight)
+//   .p-menuitem-link {
+//   background-color: transparent;
+// }
 
-.icon-height {
-  min-height: 32px;
-}
+// .icon-height {
+//   min-height: 32px;
+// }
 
-.modules-column {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: auto;
-}
+// .modules-column {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   margin: auto;
+// }
 
-.fragment {
-  position: absolute;
-  top: -10rem;
-  visibility: hidden;
-}
+// .fragment {
+//   position: absolute;
+//   top: -10rem;
+//   visibility: hidden;
+// }
 
-.column-header-row > th {
-  height: 48px;
-}
+// .column-header-row > th {
+//   height: 48px;
+// }

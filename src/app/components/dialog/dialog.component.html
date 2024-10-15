@@ -1,0 +1,14 @@
+<div class="mb-2 flex items-center justify-between">
+  <h2 class="text-base font-semibold">
+    {{ dialogRef.config.data.header | translate }}
+  </h2>
+  <button
+    type="button"
+    class="size-8 rounded-full hover:bg-zinc-900"
+    (click)="dialogRef.close()"
+  >
+    <fa-icon [icon]="icon.Xmark"></fa-icon>
+  </button>
+</div>
+
+<ng-template cdkPortalOutlet></ng-template>

@@ -1,0 +1,11 @@
+<label [for]="inputId()" class="px-1 text-sm">{{ label() | translate }}</label>
+<select
+  [id]="inputId()"
+  class="h-9 cursor-pointer rounded border bg-zinc-950 px-1.5 focus:border-theme-500"
+  [(ngModel)]="value"
+  (change)="setValue(value)"
+>
+  @for (option of options(); track option.value) {
+    <option [ngValue]="option.value">{{ option.label | translate }}</option>
+  }
+</select>

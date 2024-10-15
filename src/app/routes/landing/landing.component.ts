@@ -1,7 +1,10 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faBox } from '@fortawesome/free-solid-svg-icons';
 
 import { PickerComponent } from '~/components/picker/picker.component';
 import { Game, gameOptions } from '~/models/enum/game';
@@ -13,11 +16,14 @@ import { rational } from '~/models/rational';
 import { IconSmClassPipe } from '~/pipes/icon-class.pipe';
 import { TranslatePipe } from '~/pipes/translate.pipe';
 import { ContentService } from '~/services/content.service';
+import { DialogService } from '~/services/dialog.service';
 import { RouterService } from '~/services/router.service';
 import { ObjectivesService } from '~/store/objectives.service';
 import { PreferencesService } from '~/store/preferences.service';
 import { RecipesService } from '~/store/recipes.service';
 import { SettingsService } from '~/store/settings.service';
+
+import { SelectComponent } from '../../components/select/select.component';
 
 @Component({
   selector: 'lab-landing',
@@ -26,9 +32,11 @@ import { SettingsService } from '~/store/settings.service';
     AsyncPipe,
     FormsModule,
     RouterLink,
+    FaIconComponent,
     IconSmClassPipe,
     PickerComponent,
     TranslatePipe,
+    SelectComponent,
   ],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
@@ -39,6 +47,7 @@ export class LandingComponent {
   router = inject(Router);
   route = inject(ActivatedRoute);
   contentSvc = inject(ContentService);
+  dialogSvc = inject(DialogService);
   objectivesSvc = inject(ObjectivesService);
   preferencesSvc = inject(PreferencesService);
   recipesSvc = inject(RecipesService);
@@ -56,6 +65,10 @@ export class LandingComponent {
   gameInfo = gameInfo;
   gameOptions = gameOptions;
   modOptions = modOptions;
+
+  icon = {
+    box: faBox,
+  };
 
   Game = Game;
 
@@ -99,5 +112,9 @@ export class LandingComponent {
 
   setMod(modId: string): void {
     void this.router.navigate([modId]);
+  }
+
+  openPicker(): void {
+    this.dialogSvc.openPicker('landing.selectAnItem', 'item', this.itemIds());
   }
 }

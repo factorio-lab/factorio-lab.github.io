@@ -1,3 +1,5 @@
+@import '@angular/cdk/overlay-prebuilt.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +13,19 @@
 }
 
 @layer components {
+  .btn {
+    @apply flex h-9 items-center gap-2 rounded border border-theme-500 bg-theme-500 px-3 hover:bg-theme-400;
+  }
+
+  .input {
+    @apply h-9 rounded border bg-zinc-950 px-1.5;
+  }
+
   .spinner {
     @apply m-1 size-24 animate-spin rounded-full border-4 border-theme-500 border-x-transparent;
+  }
+
+  .ico {
+    @apply relative inline-block size-8 shrink-0 before:absolute before:left-0 before:top-0 before:size-16 before:origin-top-left before:scale-50 before:content-[''];
   }
 }

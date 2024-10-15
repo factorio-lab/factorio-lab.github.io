@@ -1,3 +1,4 @@
+import { DEFAULT_DIALOG_CONFIG, DialogConfig } from '@angular/cdk/dialog';
 import { APP_BASE_HREF } from '@angular/common';
 import { provideHttpClient } from '@angular/common/http';
 import {
@@ -19,6 +20,7 @@ import { loadModule } from 'glpk-ts';
 import { environment } from 'src/environments';
 
 import { routes } from './app.routes';
+import { DialogComponent } from './components/dialog/dialog.component';
 import { ErrorService } from './services/error.service';
 import {
   DEFAULT_LANGUAGE,
@@ -29,6 +31,11 @@ function initializeApp(): () => Promise<unknown> {
   // Load glpk-wasm
   return () => loadModule('assets/glpk-wasm/glpk.all.wasm');
 }
+
+const APP_DIALOG_CONFIG: DialogConfig = {
+  container: DialogComponent,
+  hasBackdrop: true,
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -46,6 +53,10 @@ export const appConfig: ApplicationConfig = {
       ],
       useFactory: initializeApp,
       multi: true,
+    },
+    {
+      provide: DEFAULT_DIALOG_CONFIG,
+      useValue: APP_DIALOG_CONFIG,
     },
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimations(),

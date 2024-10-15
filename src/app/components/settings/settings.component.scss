@@ -1,47 +1,47 @@
-@import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/variables';
-@import 'bootstrap/scss/mixins/breakpoints';
+// @import 'bootstrap/scss/functions';
+// @import 'bootstrap/scss/variables';
+// @import 'bootstrap/scss/mixins/breakpoints';
 
-:host {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  flex-direction: column;
-  transition: transform 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
-  z-index: 4;
-  background-color: var(--surface-overlay);
-  width: 322px;
-  height: 100%;
+// :host {
+//   display: flex;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   flex-direction: column;
+//   transition: transform 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
+//   z-index: 4;
+//   background-color: var(--surface-overlay);
+//   width: 322px;
+//   height: 100%;
 
-  @include media-breakpoint-down(xl) {
-    transform: translate(-100%);
+//   @include media-breakpoint-down(xl) {
+//     transform: translate(-100%);
 
-    &.active {
-      transform: translate(0);
-    }
-  }
+//     &.active {
+//       transform: translate(0);
+//     }
+//   }
 
-  @include media-breakpoint-up(xl) {
-    &.hidden {
-      transform: translate(-100%);
-    }
-  }
-}
+//   @include media-breakpoint-up(xl) {
+//     &.hidden {
+//       transform: translate(-100%);
+//     }
+//   }
+// }
 
-/** Avoid changing width to accomodate scrollbar */
-:host ::ng-deep {
-  .p-scrollpanel {
-    .p-scrollpanel-content {
-      overflow-y: scroll;
-    }
+// /** Avoid changing width to accomodate scrollbar */
+// :host ::ng-deep {
+//   .p-scrollpanel {
+//     .p-scrollpanel-content {
+//       overflow-y: scroll;
+//     }
 
-    .p-scrollpanel-bar-x {
-      visibility: hidden;
-    }
-  }
+//     .p-scrollpanel-bar-x {
+//       visibility: hidden;
+//     }
+//   }
 
-  .p-accordion {
-    width: 323px;
-  }
-}
+//   .p-accordion {
+//     width: 323px;
+//   }
+// }

@@ -1,84 +1,84 @@
-@import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/variables';
-@import 'bootstrap/scss/mixins/breakpoints';
+// @import 'bootstrap/scss/functions';
+// @import 'bootstrap/scss/variables';
+// @import 'bootstrap/scss/mixins/breakpoints';
 
-:host {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 320px;
-  align-items: center;
-  transition: all 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
-  transition-property: width, left;
-  z-index: 2;
-  padding: 0 1.5rem;
-  width: calc(100% - 320px);
-  height: 4rem;
+// :host {
+//   display: flex;
+//   position: fixed;
+//   top: 0;
+//   left: 320px;
+//   align-items: center;
+//   transition: all 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
+//   transition-property: width, left;
+//   z-index: 2;
+//   padding: 0 1.5rem;
+//   width: calc(100% - 320px);
+//   height: 4rem;
 
-  &.sticky {
-    background-color: var(--header-sticky-color);
-    backdrop-filter: blur(12px);
-  }
+//   &.sticky {
+//     background-color: var(--header-sticky-color);
+//     backdrop-filter: blur(12px);
+//   }
 
-  @include media-breakpoint-down(xl) {
-    left: 0;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    height: 6rem;
-  }
+//   @include media-breakpoint-down(xl) {
+//     left: 0;
+//     flex-wrap: wrap;
+//     justify-content: space-between;
+//     width: 100%;
+//     height: 6rem;
+//   }
 
-  @include media-breakpoint-down(sm) {
-    padding: 0 0.25rem;
-  }
+//   @include media-breakpoint-down(sm) {
+//     padding: 0 0.25rem;
+//   }
 
-  @include media-breakpoint-up(xl) {
-    &.settings-xl-hidden {
-      left: 0;
-      width: 100%;
-    }
-  }
-}
+//   @include media-breakpoint-up(xl) {
+//     &.settings-xl-hidden {
+//       left: 0;
+//       width: 100%;
+//     }
+//   }
+// }
 
-.header-menu {
-  display: flex;
-  margin: 0 0 0 auto;
+// .header-menu {
+//   display: flex;
+//   margin: 0 0 0 auto;
 
-  > li {
-    position: relative;
+//   > li {
+//     position: relative;
 
-    + li {
-      margin-left: 0.5rem;
-    }
-  }
+//     + li {
+//       margin-left: 0.5rem;
+//     }
+//   }
 
-  @include media-breakpoint-down(xl) {
-    justify-content: space-between;
-    width: 100%;
+//   @include media-breakpoint-down(xl) {
+//     justify-content: space-between;
+//     width: 100%;
 
-    > li {
-      width: 25%;
+//     > li {
+//       width: 25%;
 
-      + li {
-        margin: 0;
-      }
-    }
-  }
+//       + li {
+//         margin: 0;
+//       }
+//     }
+//   }
 
-  @include media-breakpoint-down(sm) {
-    > li {
-      width: 33%;
-    }
-  }
-}
+//   @include media-breakpoint-down(sm) {
+//     > li {
+//       width: 33%;
+//     }
+//   }
+// }
 
-:host ::ng-deep {
-  .p-tieredmenu {
-    right: 0;
-    left: unset !important;
-  }
-}
+// :host ::ng-deep {
+//   .p-tieredmenu {
+//     right: 0;
+//     left: unset !important;
+//   }
+// }
 
-a {
-  text-decoration: none;
-}
+// a {
+//   text-decoration: none;
+// }
